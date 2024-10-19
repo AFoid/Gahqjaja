@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suntime</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #FF8C00;
+            --secondary-color: #FFD700;
+            --background-gradient: linear-gradient(135deg, #FF8C00, #FFD700);
+            --text-color: #333;
+            --button-hover: rgba(255, 255, 255, 0.1);
+            --shadow-light: rgba(0, 0, 0, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+            --hover-effect: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            --highlight-color: #FFECB3;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-gradient);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            border-radius: 30px;
+            padding: 80px;
+            box-shadow: 0 40px 80px var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+            transform: scale(0.9);
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .logo {
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 50px;
+            position: relative;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 6px;
+            background: var(--secondary-color);
+            border-radius: 50px;
+            box-shadow: 0 4px 10px var(--shadow-dark);
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 26px;
+            font-weight: 600;
+            padding: 25px 50px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ffffff, #f8f8f8);
+            width: 100%;
+            box-shadow: 0 15px 30px var(--shadow-light);
+            position: relative;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .social-button:hover {
+            box-shadow: 0 20px 40px var(--shadow-dark);
+            transform: translateY(-8px);
+            background: var(--highlight-color);
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            border-radius: 50%;
+            transition: transform 0.5s ease;
+        }
+
+        .social-icon img {
+            width: 36px;
+            height: 36px;
+            transition: transform 0.5s ease;
+        }
+
+        .social-button:hover .social-icon {
+            transform: rotate(720deg);
+        }
+
+        .discord .social-icon { background-color: #7289DA; }
+        .telegram .social-icon { background-color: #0088cc; }
+        .youtube .social-icon { background-color: #FF0000; }
+
+        .social-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: var(--hover-effect);
+            transition: all 0.5s ease;
+        }
+
+        .social-button:hover::before {
+            left: 0;
+        }
+
+        .container::before, .container::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent);
+            animation: bubble 6s infinite ease-in-out;
+        }
+
+        .container::before {
+            top: -120px;
+            right: -120px;
+            width: 350px;
+            height: 350px;
+            animation-duration: 10s;
+        }
+
+        .container::after {
+            bottom: -100px;
+            left: -100px;
+            width: 250px;
+            height: 250px;
+            animation-duration: 8s;
+        }
+
+        @keyframes bubble {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1); }
+            100% { transform: scale(0.8); }
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 18px;
+        }
+
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .footer a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .footer a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 50px 30px;
+            }
+
+            .logo {
+                font-size: 64px;
+            }
+
+            .social-button {
+                font-size: 20px;
+                padding: 18px;
+            }
+
+            .social-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-icon img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Suntime</div>
+        <div class="social-buttons">
+            <a href="https://discord.gg/AXEdE4essg" class="social-button discord">
+                <div class="social-icon">
+                    <img src="https://i.postimg.cc/fRzWTW1h/discord.png" alt="Discord">
+                </div>
+                Наш Discord
+            </a>
+            <a href="https://t.me/suntimemine" class="social-button telegram">
+                <div class="social-icon">
+                    <img src="https://i.postimg.cc/zv27bGpP/telegram.png" alt="Telegram">
+                </div>
+                Наш Telegram
+            </a>
+            <a href="http://tiny.cc/ty8sxz" class="social-button youtube">
+                <div class="social-icon">
+                    <img src="https://i.postimg.cc/vmwz6jLM/youtube.png" alt="YouTube">
+                </div>
+                Наш YouTube
+            </a>
+        </div>
+        <div class="footer">
+            <p>© 2024 Suntime</p>
+        </div>
+    </div>
+</body>
+</html>
